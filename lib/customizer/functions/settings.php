@@ -82,6 +82,8 @@ function shoestrap_register_settings( $wp_customize ){
     
   // Typography Settings
   $settings[] = array( 'slug' => 'shoestrap_google_webfonts',           'default' => '' );
+  $settings[] = array( 'slug' => 'shoestrap_webfonts_weight',           'default' => '400' );
+  $settings[] = array( 'slug' => 'shoestrap_webfonts_character_set',    'default' => 'latin' );
   $settings[] = array( 'slug' => 'shoestrap_webfonts_assign',           'default' => 'all' );
   
   // Footer Settings
