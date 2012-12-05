@@ -34,33 +34,37 @@ function shoestrap_css_hero() {
   // if no color has been selected, set to #0066cc. This prevents errors with the php-less compiler.
   if ( strlen( $shoestrap_hero_cta_color ) < 3 ){
     $shoestrap_hero_cta_color = '#0066cc';
-  } 
-  ?>
-
-  <style>
-  <?php if ( get_theme_mod( 'shoestrap_extra_branding' ) != 1 ) { ?>
-    .top-navbar .jumbotron{margin-top: -20px;}
-  <?php } ?>
-    .jumbotron{
-      <?php if ( $shoestrap_header_mode == 'navbar' ) { ?>
-        margin-top: -17px;
-      <?php } ?>
-      background: <?php echo $shoestrap_hero_background_color; ?> url("<?php echo $shoestrap_hero_background; ?>");
-      color: <?php echo $shoestrap_hero_textcolor; ?>
-    }
-
-    <?php
+  }
+  
+  $styles = '<style>';
+  if ( get_theme_mod( 'shoestrap_extra_branding' ) != 1 ) {
+    $styles .= '.top-navbar .jumbotron{margin-top: -20px;}';
+  }
+  $styles .= '.jumbotron{';
+  if ( $shoestrap_header_mode == 'navbar' ) {
+    $styles .= 'margin-top: -17px;';
+  }
+  $styles .= 'background: ' . $shoestrap_hero_background_color . 'url("' . $shoestrap_hero_background . '");';
+  $styles .= 'color: ' . $shoestrap_hero_textcolor . ';}';
+  
+  if ( shoestrap_get_brightness( $shoestrap_hero_cta_color ) <= 160) {
+    $textColor = '#ffffff';
+  } else {
+    $textColor = '#333333';
+  }
+  
     if ( class_exists( 'lessc' ) ) {
       $less = new lessc;
       
       $less->setVariables( array(
           "btnColor"  => $shoestrap_hero_cta_color,
+          "textColor" => $textColor
       ));
       $less->setFormatter( "compressed" );
       
       if ( shoestrap_get_brightness( $shoestrap_hero_cta_color ) <= 160) {
         // The code below is a copied from bootstrap's buttons.less + mixins.less files
-        echo $less->compile("
+        $styles .= $less->compile("
           @btnColorHighlight: darken(spin(@btnColor, 5%), 10%);
   
           .gradientBar(@primaryColor, @secondaryColor, @textColor: #fff, @textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
@@ -98,7 +102,7 @@ function shoestrap_css_hero() {
           }
         ");
       } else {
-        echo $less->compile("
+        $styles .= $less->compile("
           @btnColorHighlight: darken(@btnColor, 15%);
   
           .gradientBar(@primaryColor, @secondaryColor, @textColor: #333, @textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
@@ -136,7 +140,29 @@ function shoestrap_css_hero() {
           }
         ");
       }
-    } ?>
- </style>
-<?php }
-add_action( 'wp_head', 'shoestrap_css_hero', 199 );
+    }
+    $styles .= '</style>';
+  return $styles;
+}
+
+/*
+ * Set cache for 24 hours
+ */
+function shoestrap_css_hero_cache() {
+  $data = get_transient( 'shoestrap_css_hero' );
+  if ( $data === false ) {
+    $data = shoestrap_css_hero();
+    set_transient( 'shoestrap_css_hero', $data, 3600 * 24 );
+  }
+  echo $data;
+}
+add_action( 'wp_head', 'shoestrap_css_hero_cache', 199 );
+
+/*
+ * Reset cache when in customizer
+ */
+function shoestrap_css_hero_cache_reset() {
+  delete_transient( 'shoestrap_css_hero' );
+  shoestrap_css_hero_cache();
+}
+add_action( 'customize_preview_init', 'shoestrap_css_hero_cache_reset' );

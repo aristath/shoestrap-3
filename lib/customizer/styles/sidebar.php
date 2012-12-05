@@ -3,7 +3,7 @@
 /*
  * Calculates the classes of the main area, main sidebar and secondary sidebar
  */
-function shoestrap_sidebar_class_calc( $target, $offset = '', $echo = false ) {
+function shoestrap_sidebar_class_calc_pre_cache( $target ) {
   $first  = get_theme_mod( 'shoestrap_aside_width' );
   $second = get_theme_mod( 'shoestrap_secondary_width' );
   $layout = get_theme_mod( 'shoestrap_layout' );
@@ -123,9 +123,38 @@ function shoestrap_sidebar_class_calc( $target, $offset = '', $echo = false ) {
     $class = $main;
   }
   
-  // if we've selected an offset, add it here.
-  if ( $offset ) {
-    $class = $class . ' offset' . $offset;
+  return $class;
+}
+
+function shoestrap_sidebar_class_calc( $target, $offset = '', $echo = false ) {
+  $main      = get_transient( 'shoestrap_sidebar_class_main' );
+  $primary   = get_transient( 'shoestrap_sidebar_class_primary' );
+  $secondary = get_transient( 'shoestrap_sidebar_class_secondary' );
+
+  if ( $main === false ) {
+    $main = shoestrap_sidebar_class_calc_pre_cache( 'main' );
+    set_transient( 'shoestrap_sidebar_class_main', $main, 3600 * 24 );
+  }
+
+  if ( $primary === false ) {
+    $primary = shoestrap_sidebar_class_calc_pre_cache( 'primary' );
+    set_transient( 'shoestrap_sidebar_class_primary', $main, 3600 * 24 );
+  }
+
+  if ( $secondary === false ) {
+    $secondary = shoestrap_sidebar_class_calc_pre_cache( 'secondary' );
+    set_transient( 'shoestrap_sidebar_class_secondary', $main, 3600 * 24 );
+  }
+
+  if ( $target == 'primary' ) {
+    // return the primary class
+    $class = $primary;
+  } elseif ( $target == 'secondary' ) {
+    // return the secondary class
+    $class = $secondary;
+  } else {
+    // return the main class
+    $class = $main;
   }
   
   // Echo or return the result.
@@ -135,6 +164,7 @@ function shoestrap_sidebar_class_calc( $target, $offset = '', $echo = false ) {
     return $class;
   }
 }
+
 
 /*
  * If any css should be applied to fix the layout, enter it here.
@@ -166,3 +196,24 @@ function shoestrap_sidebars_positioning_css() {
   <?php
 }
 add_action( 'wp_head', 'shoestrap_sidebars_positioning_css' );
+
+/*
+ * Set cache for 24 hours
+ */
+function shoestrap_sidebars_positioning_css_cache() {
+  $data = get_transient( 'shoestrap_sidebars_positioning_css' );
+  if ( $data === false ) {
+    $data = shoestrap_sidebars_positioning_css();
+    set_transient( 'shoestrap_sidebars_positioning_css', $data, 3600 * 24 );
+  }
+  echo $data;
+}
+
+/*
+ * Reset cache when in customizer
+ */
+function shoestrap_sidebars_positioning_css_cache_reset() {
+  delete_transient( 'shoestrap_sidebars_positioning_css' );
+  shoestrap_sidebars_positioning_css_cache();
+}
+add_action( 'customize_preview_init', 'shoestrap_sidebars_positioning_css_cache_reset' );

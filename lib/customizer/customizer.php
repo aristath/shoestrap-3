@@ -21,7 +21,6 @@ require_once locate_template( '/lib/customizer/functions/login.php' );        //
 // Apply the selected styles:
 require_once locate_template( '/lib/customizer/styles/branding.php' );        // Branding (header) region, containing the logo etc.
 require_once locate_template( '/lib/customizer/styles/webfonts.php' );        // Webfonts
-require_once locate_template( '/lib/customizer/styles/layout.php' );          // Layout
 require_once locate_template( '/lib/customizer/styles/background.php' );      // Page and wrap background
 
 if ( $advanced_builder != 1 ) {

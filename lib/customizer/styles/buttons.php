@@ -25,22 +25,27 @@ function shoestrap_buttons_css() {
       $btnColorHighlight = 'darken(@btnColor, 15%)';
     }
   }
-  ?>
+  
+  if ( shoestrap_get_brightness( $btn_color ) <= 160) {
+    $textColor = '#ffffff';
+  } else {
+    $textColor = '#333333';
+  }
 
-  <style>
-    <?php
+  $styles = '<style>';
     if ( class_exists( 'lessc' ) ) {
       $less = new lessc;
       
       $less->setVariables( array(
           "btnColor"          => $btn_color,
           "btnColorHighlight" => $btnColorHighlight,
+          "textColor"         => $textColor,
       ));
       $less->setFormatter( "compressed" );
       
       if ( shoestrap_get_brightness( $btn_color ) <= 160 ) {
         // The code below is a copied from bootstrap's buttons.less + mixins.less files
-        echo $less->compile("
+        $styles .= $less->compile("
           .gradientBar(@primaryColor, @secondaryColor, @textColor: #fff, @textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
             color: @textColor;
             text-shadow: @textShadow;
@@ -76,7 +81,7 @@ function shoestrap_buttons_css() {
           }
         ");
       } else {
-        echo $less->compile("
+        $styles .= $less->compile("
           .gradientBar(@primaryColor, @secondaryColor, @textColor: #333, @textShadow: 0 -1px 0 rgba(0,0,0,.25)) {
             color: @textColor;
             text-shadow: @textShadow;
@@ -112,8 +117,31 @@ function shoestrap_buttons_css() {
           }
         ");
       }
-    } ?>
-  </style>
-  <?php
+    }
+    $styles .= '</style>';
+    
+  return $styles;
 }
-add_action( 'wp_head', 'shoestrap_buttons_css', 199 );
+
+/*
+ * Set cache for 24 hours
+ */
+function shoestrap_buttons_css_cache() {
+  $data = get_transient( 'shoestrap_buttons_css' );
+  if ( $data === false ) {
+    $data = shoestrap_buttons_css();
+    set_transient( 'shoestrap_buttons_css', $data, 3600 * 24 );
+  }
+  echo $data;
+}
+add_action( 'wp_head', 'shoestrap_buttons_css_cache', 199 );
+
+/*
+ * Reset cache when in customizer
+ */
+function shoestrap_buttons_css_cache_reset() {
+  delete_transient( 'shoestrap_buttons_css' );
+  shoestrap_buttons_css_cache();
+}
+add_action( 'customize_preview_init', 'shoestrap_buttons_css_cache_reset' );
+

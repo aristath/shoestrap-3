@@ -122,3 +122,55 @@ ul.social-networks{
 }
 
 #main-subnav .container, #main-subnav .navbar-inner{min-height: 40px;}
+
+.sharrre{
+  .box{
+    height:22px;
+    display:inline-block;
+    position:relative;
+    padding:0px 55px 0 8px;
+    .border-radius(4px);
+    font-size:12px;
+    float:left;
+    clear:both;
+    overflow:hidden;
+    .transition(all 0.3s linear);
+  }
+  .left{
+    line-height:22px;
+    display:block;
+    white-space:nowrap;
+    text-shadow:0px 1px 1px rgba(255,255,255,0.3);
+    .transition(all 0.2s linear);
+  }
+  .middle{
+    position:absolute;
+    height:22px;
+    top:0px;
+    right:30px;
+    width:0px;
+    white-space:nowrap;
+    text-align:left;
+    overflow:hidden;
+    .box-shadow(-1px 0px 1px rgba(255,255,255,0.4), 1px 1px 2px rgba(0,0,0,0.2) inset);
+    .transition(width 0.3s linear);
+      a{
+        font-weight:bold;
+        padding:0 9px 0 9px;
+        text-align:center;
+        float:left;
+        line-height:22px;
+        .box-shadow(-1px 0px 1px rgba(255,255,255,0.4), 1px 1px 2px rgba(0,0,0,0.2) inset);
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+      }
+  }
+  .right{
+    position:absolute;
+    right:0px;
+    top:0px;
+    height:100%;
+    width:45px;
+    text-align:center;
+    line-height:22px;
+  }
+}
