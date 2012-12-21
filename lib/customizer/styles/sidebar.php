@@ -34,6 +34,17 @@ function shoestrap_sidebar_class_calc( $target, $offset = '', $echo = false ) {
     $main = 'span' . ( 12 - $second );
   }
   
+  // Overrides main region class when selected template is page-full.php
+  if ( is_page_template('page-full.php') ) {
+    $main = 'span12';
+  }
+
+  // Overrides main and primary region classes when selected template is page-primary-sidebar.php
+  if ( is_page_template('page-primary-sidebar.php') ) {
+    $main      = 'span' . ( 12 - $first );
+    $primary   = 'span' . $first;
+  }  
+
   if ( $target == 'primary' ) {
     // return the primary class
     $class = $primary;

@@ -16,7 +16,7 @@ add_theme_support('bootstrap-top-navbar');  // Enable Bootstrap's fixed navbar
 
 
 /**
- * Define which pages shouldn't have the sidebar
+ * Define which pages shouldn't have any sidebars
  *
  * See lib/sidebar.php for more details
  */
@@ -38,6 +38,68 @@ function shoestrap_display_sidebar() {
       ),
       array(
         'page-custom.php'
+      )
+    );
+  }
+
+  return $sidebar_config->display;
+}
+
+/**
+ * Define which pages shouldn't have the primary sidebar
+ *
+ * See lib/sidebar.php for more details
+ */
+function shoestrap_display_primary_sidebar() {
+  if ( get_theme_mod( 'shoestrap_sidebar_on_front' ) != 'show') {
+    $sidebar_config = new Shoestrap_Sidebar(
+      array(
+        'is_404',
+        'is_front_page'
+      ),
+      array(
+        'page-full.php'
+      )
+    );
+  } else {
+    $sidebar_config = new Shoestrap_Sidebar(
+      array(
+        'is_404',
+      ),
+      array(
+        'page-full.php'
+      )
+    );
+  }
+
+  return $sidebar_config->display;
+}
+
+/**
+ * Define which pages shouldn't have the secondary sidebar
+ *
+ * See lib/sidebar.php for more details
+ */
+function shoestrap_display_secondary_sidebar() {
+  if ( get_theme_mod( 'shoestrap_sidebar_on_front' ) != 'show') {
+    $sidebar_config = new Shoestrap_Sidebar(
+      array(
+        'is_404',
+        'is_front_page'
+      ),
+      array(
+        'page-full.php',
+        'page-primary-sidebar.php'
+      )
+    );
+  } else {
+    $sidebar_config = new Shoestrap_Sidebar(
+      array(
+        'is_404',
+      ),
+      array(
+        'page-full.php',
+        'page-primary-sidebar.php'
       )
     );
   }

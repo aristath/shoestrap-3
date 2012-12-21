@@ -24,7 +24,7 @@
   <div id="wrap" class="container" role="document">
     <?php do_action('shoestrap_pre_content'); ?>
     <div id="content" class="row">
-      <?php if ( in_array ( $layout, array ( 'mps', 'pms', 'smp', 'spm' ) ) && shoestrap_display_sidebar() ) { ?>
+      <?php if ( in_array ( $layout, array ( 'mps', 'pms', 'smp', 'spm' ) ) && shoestrap_display_sidebar() && shoestrap_display_primary_sidebar() ) { ?>
         <div class="m_p_wrap">
       <?php } ?>
       <?php do_action('shoestrap_pre_main'); ?>
@@ -32,7 +32,7 @@
         <?php include shoestrap_template_path(); ?>
       </div>
       <?php do_action('shoestrap_after_main'); ?>
-      <?php if (shoestrap_display_sidebar()) : ?>
+      <?php if (shoestrap_display_sidebar() && shoestrap_display_primary_sidebar()) : ?>
         <?php if ( !in_array ( $layout, array ( 'm', 'ms', 'sm' ) ) ) { ?>
           <aside id="sidebar" class="<?php echo shoestrap_sidebar_class(); ?>" role="complementary">
             <?php do_action('shoestrap_pre_sidebar'); ?>
@@ -40,10 +40,10 @@
             <?php do_action('shoestrap_after_sidebar'); ?>
           </aside>
         <?php } ?>
-        <?php if ( in_array ( $layout, array ( 'mps', 'pms', 'smp', 'spm' ) ) && shoestrap_display_sidebar() ) { ?>
+        <?php if ( in_array ( $layout, array ( 'mps', 'pms', 'smp', 'spm' ) ) && shoestrap_display_sidebar() && shoestrap_display_primary_sidebar() ) { ?>
           </div>
         <?php } ?>
-        <?php if ( !in_array ( $layout, array ( 'm', 'mp', 'pm' ) ) ) { ?>
+        <?php if ( !in_array ( $layout, array ( 'm', 'mp', 'pm' ) ) && shoestrap_display_sidebar() && shoestrap_display_secondary_sidebar() ) { ?>
           <aside id="secondary" class="<?php echo shoestrap_sidebar_class( 'secondary' ); ?>" role="complementary">
             <?php do_action('shoestrap_pre_sidebar'); ?>
             <?php get_template_part('templates/secondary-sidebar'); ?>
