@@ -113,7 +113,7 @@ The following options are available when using the standard mode:
 
 ## Advanced Mode:
 
-To use the advanced mode, visit the "Advanced" section of your customizer, and make sure that the "Toggle the advanced Bootstrap Builder" checkbox **is** checked.
+To use the advanced mode, click on Themes, hen click on the Shoestrap link where you'll find the "Enable Developer Mode" checkbox.
 When using this mode, **bootstrap's variables.less file is updated to include the user's options and the stylesheet file will be re-compiled with these options.
 This way users can alter most bootstrap defaults.
 
