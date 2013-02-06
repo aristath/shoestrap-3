@@ -19,11 +19,7 @@ function shoestrap_scripts() {
   $shoestrap_responsive = get_theme_mod( 'shoestrap_responsive' );
   $preset               = get_theme_mod( 'shoestrap_general_presets' );
 
-  if ( $preset == 'google' ) {
-    wp_enqueue_style('shoestrap_app', get_template_directory_uri() . '/assets/css/app-google.css', false, null);
-  } else {
-    wp_enqueue_style('shoestrap_app', get_template_directory_uri() . '/assets/css/app.css', false, null);
-  }
+  wp_enqueue_style('shoestrap_app', get_template_directory_uri() . '/assets/css/app.css', false, null);
   
   if ( $shoestrap_responsive != '0' ) {
     wp_enqueue_style('shoestrap_app_responsive', get_template_directory_uri() . '/assets/css/responsive.css', false, null);
