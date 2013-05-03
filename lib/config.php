@@ -131,6 +131,7 @@ function shoestrap_sidebar_class( $sidebar = 'primary' ) {
 
 // Configuration values
 define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y
+define('GOOGLE_FONTS_API_KEY', ''); // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 define('POST_EXCERPT_LENGTH', 40);
 
 /**

@@ -86,3 +86,15 @@ foreach( $files as $file ) {
     require_once locate_template( $file );
   }
 }
+
+/**
+ * Used by Shoestrap_Google_WebFont_Control
+ *
+ * Adds extra javascript actions to the theme customizer editor
+ */
+function shoestrap_customizer_live_preview()
+{
+  wp_register_script('theme_customizer', get_template_directory_uri() . '/assets/js/theme-customizer.js', false, null, true);
+  wp_enqueue_script('theme_customizer');
+}
+add_action( 'customize_controls_init', 'shoestrap_customizer_live_preview' );

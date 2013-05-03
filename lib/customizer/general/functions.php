@@ -11,7 +11,7 @@ function shoestrap_general_customizer( $wp_customize ){
   foreach( $sections as $section ){
     $wp_customize->add_section( $section['slug'], array( 'title' => $section['title'], 'priority' => $section['priority'] ) );
   }
-  
+
   $no_gradients_help  = __ ('By selecting this option, all gradients will be removed and solid colors will be used instead, giving a cleaner look to your site.', 'shoestrap' );
   $no_radius_help     = __( 'By selecting this option. all round corners will be removed from your website (buttons etc) giving a more straight look to your site', 'shoestrap' );
 
@@ -20,7 +20,7 @@ function shoestrap_general_customizer( $wp_customize ){
   $settings[] = array( 'slug' => 'shoestrap_general_no_radius',         'default' => '' );
   $settings[] = array( 'slug' => 'shoestrap_general_no_gradients_help', 'default' => $no_gradients_help );
   $settings[] = array( 'slug' => 'shoestrap_general_no_radius_help',    'default' => $no_radius_help );
-  
+
   foreach( $settings as $setting ){
     $wp_customize->add_setting( $setting['slug'], array( 'default' => $setting['default'], 'type' => 'theme_mod', 'capability' => 'edit_theme_options' ) );
   }
@@ -43,7 +43,7 @@ function shoestrap_general_customizer( $wp_customize ){
       'priority'    => $control['priority'],
     ));
   }
-  
+
   foreach ( $help_controls as $control ) {
     $wp_customize->add_control( new Shoestrap_Customize_Label_Control( $wp_customize, $control['setting'], array(
       'label'       => $control['label'],
