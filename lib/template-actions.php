@@ -23,7 +23,7 @@ function shoestrap_article_content_action() { ?>
       <?php do_action( 'shoestrap_entry_summary_end' ); ?>
     </div>
     <footer>
-      <?do_action( 'shoestrap_post_footer' ); ?>
+      <?php do_action( 'shoestrap_post_footer' ); ?>
     </footer>
   </article>
   <?php
