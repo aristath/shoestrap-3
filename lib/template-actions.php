@@ -23,7 +23,8 @@ function shoestrap_article_content_action() { ?>
       <?php do_action( 'shoestrap_entry_summary_end' ); ?>
     </div>
     <footer>
-      <?do_action( 'shoestrap_post_footer' ); ?>
+      <?php do_action( 'shoestrap_post_footer' ); ?>
+	  <div class="clearfix"></div>
     </footer>
   </article>
   <?php
@@ -94,7 +95,10 @@ function shoestrap_single_page_content_template() { ?>
     <?php do_action( 'shoestrap_before_the_content' ); ?>
     <?php the_content(); ?>
     <?php do_action( 'shoestrap_after_the_content' ); ?>
-    <?php wp_link_pages( array( 'before' => '<nav class="pagination">', 'after' => '</nav>' ) ); ?>
+    <footer>
+        <?php wp_link_pages( array( 'before' => '<nav id="page-nav"><p>' . __( 'Pages:', 'shoestrap' ), 'after' => '</p></nav>' ) ); ?>
+    </footer>
+    <?php comments_template( '/templates/comments.php' ); ?>
   <?php endwhile;
 }
 add_action( 'shoestrap_single_page_content', 'shoestrap_single_page_content_template', 10 );
