@@ -18,6 +18,9 @@ function shoestrap_general_customizer( $wp_customize ){
   $settings   = array();
   $settings[] = array( 'slug' => 'shoestrap_general_no_gradients',      'default' => '' );
   $settings[] = array( 'slug' => 'shoestrap_general_no_radius',         'default' => '' );
+  $settings[] = array( 'slug' => 'shoestrap_google_analytics_id',       'default' => '' );
+  $settings[] = array( 'slug' => 'shoestrap_google_fonts_api_key',      'default' => '' );
+  $settings[] = array( 'slug' => 'shoestrap_excerpt_length',            'default' => 40 );
   $settings[] = array( 'slug' => 'shoestrap_general_no_gradients_help', 'default' => $no_gradients_help );
   $settings[] = array( 'slug' => 'shoestrap_general_no_radius_help',    'default' => $no_radius_help );
 
@@ -27,16 +30,22 @@ function shoestrap_general_customizer( $wp_customize ){
 
   // Checkbox Controls
   $checkbox_controls    = array();
-  $checkbox_controls[]  = array( 'setting' => 'shoestrap_general_no_gradients',       'label' => 'No Gradients',    'section' => 'shoestrap_general',  'priority' => 1 );
-  $checkbox_controls[]  = array( 'setting' => 'shoestrap_general_no_radius',          'label' => 'No Border Radius','section' => 'shoestrap_general',  'priority' => 3 );
+  $checkbox_controls[]  = array( 'setting' => 'shoestrap_general_no_gradients',       'label' => __( 'No Gradients', 'shoestrap' ),     'section' => 'shoestrap_general',  'priority' => 1 );
+  $checkbox_controls[]  = array( 'setting' => 'shoestrap_general_no_radius',          'label' => __( 'No Border Radius', 'shoestrap' ), 'section' => 'shoestrap_general',  'priority' => 3 );
 
   $help_controls        = array();
   $help_controls[]      = array( 'setting' => 'shoestrap_general_no_gradients_help',  'label' => $no_gradients_help,'section' => 'shoestrap_general',  'priority' => 2 );
   $help_controls[]      = array( 'setting' => 'shoestrap_general_no_radius_help',     'label' => $no_radius_help,   'section' => 'shoestrap_general',  'priority' => 4 );
 
+  // Text Controls
+  $text_controls    = array();
+  $text_controls[]  = array( 'setting' => 'shoestrap_google_analytics_id',    'label' => __( 'Enter Google Analytic ID', 'shoestrap' ),               'section' => 'shoestrap_general',  'priority' => 5 );
+  $text_controls[]  = array( 'setting' => 'shoestrap_google_fonts_api_key',   'label' => __( 'Enter Google Fonts API Key', 'shoestrap' ),             'section' => 'shoestrap_general',  'priority' => 6 );
+  $text_controls[]  = array( 'setting' => 'shoestrap_excerpt_length',         'label' => __( 'Define excerpt length - default is 40', 'shoestrap' ),  'section' => 'shoestrap_general',  'priority' => 7 );
+    
   foreach ( $checkbox_controls as $control ) {
     $wp_customize->add_control( $control['setting'], array(
-      'label'       => __( $control['label'], 'shoestrap' ),
+      'label'       => $control['label'],
       'section'     => $control['section'],
       'settings'    => $control['setting'],
       'type'        => 'checkbox',
@@ -51,6 +60,16 @@ function shoestrap_general_customizer( $wp_customize ){
       'settings'    => $control['setting'],
       'priority'    => $control['priority'],
     )));
+  }
+  
+  foreach ( $text_controls as $control) {
+    $wp_customize->add_control( $control['setting'], array(
+      'label'       => $control['label'],
+      'section'     => $control['section'],
+      'settings'    => $control['setting'],
+      'type'        => 'text',
+      'priority'    => $control['priority']
+    ));
   }
 
 }

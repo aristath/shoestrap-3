@@ -130,9 +130,9 @@ function shoestrap_sidebar_class( $sidebar = 'primary' ) {
 }
 
 // Configuration values
-define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y
-define('GOOGLE_FONTS_API_KEY', ''); // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-define('POST_EXCERPT_LENGTH', 40);
+define('GOOGLE_ANALYTICS_ID', get_theme_mod( 'shoestrap_google_analytics_id' )); // UA-XXXXX-Y
+define('GOOGLE_FONTS_API_KEY', get_theme_mod( 'shoestrap_google_fonts_api_key' )); // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+define('POST_EXCERPT_LENGTH', get_theme_mod( 'shoestrap_excerpt_length' ));
 
 /**
 * $content_width is a global variable used by WordPress for max image upload sizes and media embeds (in pixels)
