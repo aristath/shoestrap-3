@@ -19,6 +19,8 @@ function of_head() { do_action( 'of_head' ); }
 /**
  * Add default options upon activation else DB does not exist
  *
+ * DEPRECATED, Class_options_machine now does this on load to ensure all values are set
+ *
  * @since 1.0.0
  */
 function of_option_setup()	
@@ -84,7 +86,6 @@ function of_get_options($key = null, $data = null) {
 		'key'=>$key, 'data'=>$data
 	));
 	if ($key != null) { // Get one specific value
-
 		$data = get_theme_mod($key, $data);
 	} else { // Get all values
 		$data = get_theme_mods();		
@@ -109,14 +110,12 @@ function of_get_options($key = null, $data = null) {
 
 function of_save_options($data, $key = null) {
 	global $smof_data;
-
     if (empty($data))
         return;	
     do_action('of_save_options_before', array(
 		'key'=>$key, 'data'=>$data
 	));
 	$data = apply_filters('of_options_before_save', $data);
-
 	if ($key != null) { // Update one specific value
 		if ($key == BACKUPS) {
 			unset($data['smof_init']); // Don't want to change this.
@@ -144,4 +143,6 @@ function of_save_options($data, $key = null) {
 
 $data = of_get_options();
 $smof_data = of_get_options();
+if (!isset($smof_details))
+	$smof_details = array();
 $data = $smof_data;

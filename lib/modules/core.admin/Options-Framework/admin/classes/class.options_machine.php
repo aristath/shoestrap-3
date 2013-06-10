@@ -64,24 +64,37 @@ class Options_Machine {
 	 * @return array
 	 */
 	public static function optionsframework_machine($options) {
-		global $smof_output;
-	    $smof_data = of_get_options();
+		global $smof_output, $smof_details;
+		if (empty($options))
+			return;
+		$smof_data = of_get_options();
+		foreach($options as $key => $option) {
+			if (!isset($option['id']) || empty($option['id']))
+				continue;
+			$option = self::sanitize_option($option);
+			$smof_details[$option['id']] = $option;
+			if (!isset($smof_data[$option['id']])) {
+				of_save_options($option['std'], $option['id']);
+				$options[$key] = $option;
+				$smof_data[$option['id']] = $option['std'];
+			}
+		}
+	    
 		$data = $smof_data;
 
 		$defaults = array();   
 	    $counter = 0;
 		$menu = '';
 		$output = '';
-		
+
+
 		do_action('optionsframework_machine_before', array(
 				'options'	=> $options,
 				'smof_data'	=> $smof_data,
 			));
-		if ($output != $smof_output) {
-			$output .= $smof_output;	
-			$smof_outout = "";
-		}
-		
+		$output .= $smof_output;
+
+
 		
 		foreach ($options as $value) {
 			
@@ -162,10 +175,7 @@ class Options_Machine {
 						$theValue = $option;
 						if (!is_numeric($select_ID))
 							$theValue = $select_ID;
-						$selected = "";
-						if ($smof_data[$value['id']] == $theValue)
-							$selected = ' selected="selected"';
-						$output .= '<option id="' . $select_ID . '" value="'.$theValue.'" ' . $selected . ' />'.$option.'</option>';	 
+						$output .= '<option id="' . $select_ID . '" value="'.$theValue.'" ' . selected($smof_data[$value['id']], $theValue, false) . ' />'.$option.'</option>';	 
 					 } 
 					$output .= '</select></div>';
 				break;
@@ -391,11 +401,12 @@ class Options_Machine {
 					//custom icon
 					$icon = '';
 					if(isset($value['icon'])){
-						$icon = ' style="background: url('. $value['icon'] .') no-repeat 13px 10px;"';
+						$icon = ' style="background-image: url('. $value['icon'] .');"';
 					}
 					$header_class = str_replace(' ','',strtolower($value['name']));
 					$jquery_click_hook = str_replace(' ', '', strtolower($value['name']) );
-					$jquery_click_hook = "of-option-" . $jquery_click_hook;
+					$jquery_click_hook = "of-option-" . trim(preg_replace('/ +/', '', preg_replace('/[^A-Za-z0-9 ]/', '', urldecode(html_entity_decode(strip_tags($jquery_click_hook))))));
+					
 					$menu .= '<li class="'. $header_class .'"><a title="'.  $value['name'] .'" href="#'.  $jquery_click_hook  .'"'. $icon .'>'.  $value['name'] .'</a></li>';
 					$output .= '<div class="group" id="'. $jquery_click_hook  .'"><h2>'.$value['name'].'</h2>'."\n";
 				break;
@@ -574,8 +585,11 @@ class Options_Machine {
 					} else { 
 						$g_size = '';
 					}
+					$hide = " hide";
+					if ($smof_data[$value['id']] != "none" && $smof_data[$value['id']] != "")
+						$hide = "";
 					
-					$output .= '<p class="'.$value['id'].'_ggf_previewer google_font_preview" '. $g_size .'>'. $g_text .'</p>';
+					$output .= '<p class="'.$value['id'].'_ggf_previewer google_font_preview'.$hide.'" '. $g_size .'>'. $g_text .'</p>';
 				break;
 				
 				//JQuery UI Slider
@@ -679,11 +693,7 @@ class Options_Machine {
 					'output'	=> $output,
 					'value'		=> $value
 				));
-			if ($output != $smof_output) {
-				$output .= $smof_output;	
-				$smof_outout = "";
-			}
-
+			$output .= $smof_output;
 			
 			//description of each option
 			if ( $value['type'] != 'heading') { 
@@ -709,11 +719,7 @@ class Options_Machine {
 					'output'		=> $output,
 					'value'			=> $value
 				));
-		if ($output != $smof_output) {
-			$output .= $smof_output;	
-			$smof_outout = "";
-		}
-
+	    $output .= $smof_output;
 	    
 	    return array($output,$menu,$defaults);
 	    
@@ -736,7 +742,9 @@ class Options_Machine {
 	    $smof_data = of_get_options();
 		
 		$uploader = '';
-	    $upload = $smof_data[$id];
+		$upload = "";
+		if (isset($smof_data[$id]))
+	    	$upload = $smof_data[$id];
 		$hide = '';
 		
 		if ($mod == "min") {$hide ='hide';}
@@ -792,7 +800,8 @@ class Options_Machine {
 		
 		$slider = '';
 		$slide = array();
-	    $slide = $smof_data[$id];
+		if (isset($smof_data[$id]))
+	    	$slide = $smof_data[$id];
 		
 	    if (isset($slide[$oldorder])) { $val = $slide[$oldorder]; } else {$val = $std;}
 		
