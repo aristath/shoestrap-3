@@ -130,11 +130,11 @@ define('themePATH', get_theme_root());
 function shoestrap_getFilePaths($file, $trail="/") {
     $return['themeuri'] = themeURI;
     $folder = themeFOLDER;
-    $return['themepath'] = themePATH.$trail;
+    $return['themepath'] = themePATH.DIRECTORY_SEPARATOR;
     $parts = explode($folder, $file);
-    $return['path'] = $file.$trail;
-    $return['relativepath'] = $parts[1].$trail;
-    $return['uri'] = $return['themeuri'].$parts[1].$trail;
-    $return['relativeuri'] = $parts[1].$trail;
+    $return['path'] = $file.DIRECTORY_SEPARATOR;
+    $return['relativepath'] = $parts[1].DIRECTORY_SEPARATOR; 
+    $return['relativeuri'] = str_replace(DIRECTORY_SEPARATOR, $trail, $parts[1]).$trail;
+    $return['uri'] = $return['themeuri'].$return['relativeuri'];
     return $return;
 }
