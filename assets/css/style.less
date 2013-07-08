@@ -43,15 +43,17 @@
 // Typography
 // -------------------------
 
-@font-family-sans-serif:  ;
+@font-family-sans-serif:  Arial, Helvetica, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
-@font-family-base:        Arial, Helvetica, sans-serif, ;
+@font-family-base:        Arial, Helvetica, sans-serif;
 
 @font-size-base:          14px;
 @font-size-large:         ceil(@font-size-base * 1.25); // ~18px
 @font-size-small:         ceil(@font-size-base * 0.85); // ~12px
 @font-size-mini:          ceil(@font-size-base * 0.75); // ~11px
+@font-style-base:          inherit;
+@font-weight-base:         inherit;
 
 @line-height-base:        1.428571429; // 20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
@@ -94,7 +96,7 @@
 // -------------------------
 
 @btn-default-color:              #fff;
-@btn-default-bg:                 #a7a9aa;
+@btn-default-bg:                 #474949;
 @btn-default-border:             @btn-default-bg;
 
 @btn-primary-color:              @btn-default-color;
@@ -130,9 +132,9 @@
 
 @input-color-placeholder:        @gray-light;
 
-@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2));
-@input-height-large:             (@line-height-computed + (@padding-large-vertical * 2));
-@input-height-small:             (@line-height-computed + (@padding-small-vertical * 2));
+@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
+@input-height-large:             (@line-height-computed + (@padding-large-vertical * 2) + 2);
+@input-height-small:             (@line-height-computed + (@padding-small-vertical * 2) + 2);
 
 
 // Dropdowns
@@ -429,6 +431,47 @@
 // Point at which the navbar stops collapsing
 @grid-float-breakpoint:     @screen-tablet;
 
+
+// Shoestrap-specific variables
+// --------------------------------------------------
+
+// H1
+@heading-h1-face:         Arial, Helvetica, sans-serif;
+@heading-h1-size:         38px;
+@heading-h1-weight:       inherit;
+@heading-h1-style:        inherit;
+
+// H2
+@heading-h2-face:         Arial, Helvetica, sans-serif;
+@heading-h2-size:         32px;
+@heading-h2-weight:       inherit;
+@heading-h2-style:        inherit;
+
+// H3
+@heading-h3-face:         Arial, Helvetica, sans-serif;
+@heading-h3-size:         24px;
+@heading-h3-weight:       inherit;
+@heading-h3-style:        inherit;
+
+// H4
+@heading-h4-face:         Arial, Helvetica, sans-serif;
+@heading-h4-size:         18px;
+@heading-h4-weight:       inherit;
+@heading-h4-style:        inherit;
+
+// H5
+@heading-h5-face:         Arial, Helvetica, sans-serif;
+@heading-h5-size:         16px;
+@heading-h5-weight:       inherit;
+@heading-h5-style:        inherit;
+
+// H6
+@heading-h6-face:         Arial, Helvetica, sans-serif;
+@heading-h6-size:         12px;
+@heading-h6-weight:       inherit;
+@heading-h6-style:        inherit;
+
+
 /*!
  * Bootstrap v3.0.0
  *
@@ -440,60 +483,60 @@
  */
 
 // Core variables and mixins
-// @import "http://localhost/wp-content/themes/shoestrap/assets/less/variables";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/mixins";
+// @import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/variables";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/mixins";
 
 // Reset
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/normalize";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/print";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/normalize";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/print";
 
 // Core CSS
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/scaffolding";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/type";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/code";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/grid";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/scaffolding";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/type";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/code";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/grid";
 
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/tables";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/forms";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/buttons";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/tables";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/forms";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/buttons";
 
 // Components: common
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/component-animations";
-@import "http://localhost/wp-content/themes/shoestrap/assets/fonts/elusive-webfont";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/dropdowns";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/list-group";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/panels";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/wells";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/close";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/component-animations";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/fonts/elusive-webfont";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/dropdowns";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/list-group";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/panels";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/wells";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/close";
 
 // Components: Nav
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/navs";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/navbar";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/button-groups";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/breadcrumbs";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/pagination";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/pager";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/navs";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/navbar";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/button-groups";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/breadcrumbs";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/pagination";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/pager";
 
 // Components: Popovers
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/modals";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/tooltip";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/popovers";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/modals";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/tooltip";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/popovers";
 
 // Components: Misc
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/alerts";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/thumbnails";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/media";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/labels";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/badges";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/progress-bars";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/accordion";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/carousel";
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/jumbotron";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/alerts";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/thumbnails";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/media";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/labels";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/badges";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/progress-bars";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/accordion";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/carousel";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/jumbotron";
 
 // Utility classes
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/utilities"; // Has to be last to override when necessary
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/responsive-utilities";
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/utilities"; // Has to be last to override when necessary
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/responsive-utilities";
 
 // Custom Shoestrap less-css
-@import "http://localhost/wp-content/themes/shoestrap/assets/less/app";
-@elusiveWebfontPath: 'http://localhost/wp-content/themes/shoestrap/assets/fonts/'; // Elusive webfonts path;
+@import "http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/less/app";
+@elusiveWebfontPath: 'http://sandbox.dev/wp-content/themes/lightspeed-wp/assets/fonts/'; // Elusive webfonts path;

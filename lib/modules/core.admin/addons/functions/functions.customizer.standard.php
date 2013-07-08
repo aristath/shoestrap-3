@@ -44,11 +44,6 @@ function smof_customize_register( $wp_customize ) {
       $section_set = true;
     }
 
-    if ( !array_key_exists("customizer", $smof_details[$option['id']]) ) {
-      //echo $option['id'];
-      //continue;      
-    }
-
     switch( $option['type'] ) {
       case 'heading':
         // We don't want to put up the section unless it's used by something visible in the customizer
