@@ -77,7 +77,7 @@ function smof_preview_init( $wp_customize ) {
       rootpath: "'.get_template_directory_uri().'/assets/less/"
     };
   </script>';
-  wp_enqueue_script( 'less-js', get_template_directory_uri() . SMOF_DIR . 'addons/assets/js/less-1.3.3.min.js' );
+  wp_enqueue_script( 'less-js', get_template_directory_uri() . SMOF_DIR . 'addons/assets/js/less-1.4.1.min.js' );
   wp_enqueue_script( 'preview-js', get_template_directory_uri() . SMOF_DIR . 'addons/assets/js/preview.js' );
   wp_localize_script( 'preview-js', 'smofPost', array(
     'data'      => $smof_data,
