@@ -114,9 +114,11 @@ function shoestrap_getVariable($key, $fresh = false) {
   if ( $fresh ) {
     $value = get_theme_mod( $key );
   } else {
-    if ( ( !isset( $value ) || $value == "" ) && !array_key_exists( $key, $smof_data ) && isset( $smof_details[$key]['std'] ) ) {
+    if ( ( !isset( $value ) || $value == "" ) 
+	&& (is_array($smof_data) && !array_key_exists( $key, $smof_data )) 
+	&& (is_array($smof_details) && is_array($smof_details[$key]) && isset( $smof_details[$key]['std'] ) )) {
     	$value = $smof_details[$key]['std'];
-    } elseif ( array_key_exists( $key, $smof_data ) ) {
+    } elseif ( is_array($smof_data) && array_key_exists( $key, $smof_data ) ) {
     	$value = $smof_data[$key];
     }
   }
