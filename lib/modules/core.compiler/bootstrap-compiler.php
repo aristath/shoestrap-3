@@ -14,6 +14,7 @@ if ( !defined( 'DB_NAME' ) ) {
  */
 function shoestrap_css( $target = 'path', $echo = false ) {
   $cssid = null;
+
   // If this is a multisite installation, append the blogid to the filename
   if ( is_multisite() ) {
     global $blog_id;
@@ -22,8 +23,6 @@ function shoestrap_css( $target = 'path', $echo = false ) {
     else
       $cssid = null;
   }
-
-
 
   if ( $target == 'url' )
     $css_path = get_template_directory_uri() . '/assets/css/style' . $cssid. '.css';
@@ -46,31 +45,14 @@ function shoestrap_css_not_writeable($array){
   if ( $current_screen->parent_base == 'themes' ) {
     $filename = shoestrap_css();
     $url = shoestrap_css('url');
-    //$filename_less = str_replace(".css", ".less", $filename);
+    $filename_less = str_replace(".css", ".less", $filename);
 
-    //if (!is_writable($filename) || !is_writable($filename_less)) {
     if (!is_writable($filename)) {
-      if (!is_writable($filename)) {
-        $css = shoestrap_compile_css();
-      }
-      // if (!is_writable($filename_less)) {
-      //   Not needed
-      //   $css = shoestrap_compile_css('less');
-      // }
-      //if (!is_writable($filename) || !is_writable($filename_less)) {
-      if (!is_writable($filename)) {
-        echo '<div class="error"><p>';
-        //echo __( "The following file(s) are not writable and must be so in order to utilize this theme. Please update their permissions.", "shoestrap");
-        echo __( "The following file is not writable and must be so in order to utilize this theme. Please update their permissions.", "shoestrap");
-        if (!is_writable($filename)) {
-          echo '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.$url.'" target="_blank">'.$url.'</a>';
-        }
-        // if (!$filename_less) {
-        //   echo '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.str_replace(".css", ".less", $url).'" target="_blank">'.str_replace(".css", ".less", $url).'</a>';
-        // }
-        echo '</p></div>';
-      }
-    }
+			echo '<div class="error"><p>';
+			echo __( "The following file is not writable and must be so in order to utilize this theme. Please update their permissions.", "shoestrap");
+			echo '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.$url.'" target="_blank">'.$url.'</a>';
+			echo '</p></div>';
+		}
   }
 }
 add_action( 'admin_notices', 'shoestrap_css_not_writeable');
