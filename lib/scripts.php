@@ -101,8 +101,7 @@ function shoestrap_jquery_local_fallback($src, $handle) {
 }
 
 function shoestrap_remove_script_version( $src ){
-  $parts = explode( '?', $src );
-  return $parts[0];
+  return preg_replace('/[?&]ver=[0-9a-z._-]*($|#|&)/i', '$1', $src);
 }
 add_filter( 'script_loader_src', 'shoestrap_remove_script_version', 15, 1 );
 add_filter( 'style_loader_src', 'shoestrap_remove_script_version', 15, 1 );
