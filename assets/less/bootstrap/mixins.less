@@ -627,7 +627,7 @@
 
     .offsetX (@index) when (@index > 0) {
       (~".offset@{index}") { .offset(@index); }
-      .offset@{index}:first-child { .offsetFirstChild(@index); }
+      (~".offset@{index}:first-child") { .offsetFirstChild(@index); }
       .offsetX(@index - 1);
     }
     .offsetX (0) {}
