@@ -21,6 +21,15 @@ function shoestrap_module_advanced_options( $sections ) {
   // );
 
   $fields[] = array( 
+    'title'     => __( 'Disable WPAUTOP in posts', 'shoestrap' ),
+    'desc'      => __( 'Default: Off.', 'shoestrap' ),
+    'id'        => 'wpautop_toggle',
+    'default'   => 0,
+    'type'      => 'switch',
+    'customizer'=> array(),
+  );
+
+  $fields[] = array( 
     'title'     => __( 'Disable Comments on Blog', 'shoestrap' ),
     'desc'      => __( 'Do not allow site visitors to write comments on blog posts. Default: Off.', 'shoestrap' ),
     'id'        => 'blog_comments_toggle',

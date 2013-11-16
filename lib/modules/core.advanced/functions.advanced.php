@@ -88,3 +88,16 @@ function shoestrap_core_blog_comments_toggle() {
 }
 endif;
 add_action( 'init','shoestrap_core_blog_comments_toggle', 1 );
+
+if ( !function_exists( 'shoestrap_disable_wpautop' ) ) :
+/*
+ * Disable WPAUTOP in posts
+ */
+function shoestrap_disable_wpautop() {
+  if ( shoestrap_getVariable( 'wpautop_toggle' ) == 1 ) :
+    remove_filter( 'the_content', 'wpautop' );
+    remove_filter( 'the_excerpt', 'wpautop' );
+  endif;
+}
+endif;
+add_action( 'init','shoestrap_disable_wpautop', 1 );
