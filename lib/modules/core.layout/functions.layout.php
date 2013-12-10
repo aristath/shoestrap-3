@@ -26,14 +26,13 @@ function shoestrap_getLayout() {
     endif;
 
     // Use default setting if $shoestrap_layout not set yet
-    if( !isset( $shoestrap_layout ) ) {
+    if ( !isset( $shoestrap_layout ) ) :
       $post_types = get_post_types( array( 'public' => true ), 'names' );
       foreach ( $post_types as $post_type ) :
         if ( is_singular( $post_type ) && shoestrap_getVariable( 'cpt_layout_toggle' ) == 1 ) :
           $shoestrap_layout = intval( shoestrap_getVariable( $post_type . '_layout' ) );
         endif;
       endforeach; 
-    }
     endif;
     
     if ( !is_active_sidebar( 'sidebar-secondary' ) && is_active_sidebar( 'sidebar-primary' ) && $shoestrap_layout == 5 ) :
