@@ -34,7 +34,8 @@ function shoestrap_getLayout() {
         endif;
       endforeach; 
     }
-
+    endif;
+    
     if ( !is_active_sidebar( 'sidebar-secondary' ) && is_active_sidebar( 'sidebar-primary' ) && $shoestrap_layout == 5 ) :
       $shoestrap_layout = 3;
     endif;
