@@ -7303,7 +7303,7 @@ li.dropdown ul.dropdown-menu li.dropdown.pull-left {
   }
 }
 .topnavbar {
-  z-index: 9999;
+  z-index: 1030;
 }
 .secondary {
   z-index: 1;

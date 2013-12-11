@@ -5241,7 +5241,7 @@ button.close {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 9999;
 }
 .modal.fade .modal-dialog {
   -webkit-transform: translate(0, -25%);
@@ -7929,7 +7929,7 @@ li.dropdown ul.dropdown-menu li.dropdown.pull-left {
   }
 }
 .topnavbar {
-  z-index: 9999;
+  z-index: 1030;
 }
 .secondary {
   z-index: 1;
