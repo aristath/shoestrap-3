@@ -197,7 +197,10 @@ function roots_excerpt_length($length) {
 }
 
 function roots_excerpt_more($more) {
-  return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'roots') . '</a>';
+  if($continue_text = shoestrap_getVariable('post_excerpt_link_text')) {
+    return ' &hellip; <a href="' . get_permalink() . '">' . __($continue_text, 'shoestrap') . '</a>';
+  }
+  return ' &hellip;';
 }
 add_filter('excerpt_length', 'roots_excerpt_length');
 add_filter('excerpt_more', 'roots_excerpt_more');
