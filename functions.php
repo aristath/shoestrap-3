@@ -18,6 +18,12 @@ if ( !defined( 'SHOESTRAP_NAVBAR_CONTAINER_CLASS' ) )
 if ( !defined( 'SHOESTRAP_NAVBAR_CLASS' ) )
 	define( 'SHOESTRAP_NAVBAR_CLASS', 'navbar navbar-default navbar-static-top' );
 
+if ( !defined( 'SHOESTRAP_SECTION_CLASS_MAIN' ) )
+	define( 'SHOESTRAP_SECTION_CLASS_MAIN', 'col-md-8' );
+
+if ( !defined( 'SHOESTRAP_SECTION_CLASS_PRIMARY' ) )
+	define( 'SHOESTRAP_SECTION_CLASS_PRIMARY', 'col-md-4' );
+
 // require_once locate_template('/lib/dependencies/dependencies.php');           // Utility functions
 
 /**
