@@ -4,7 +4,19 @@ if ( !defined( 'SHOESTRAP_LAYOUT' ) )
 	define( 'SHOESTRAP_LAYOUT', 1 );
 
 if ( !defined( 'SHOESTRAP_CSS_URL' ) )
-	define( 'SHOESTRAP_CSS_URL', get_template_directory_uri() . '/assets/css/main.min.css' );
+	define( 'SHOESTRAP_CSS_URL', get_template_directory_uri() . '/assets/css/style-default.css' );
+
+if ( !defined( 'SHOESTRAP_NAV_MODE' ) )
+	define( 'SHOESTRAP_NAV_MODE', 'normal' );
+
+if ( !defined( 'SHOESTRAP_CONTAINER_CLASS' ) )
+	define( 'SHOESTRAP_CONTAINER_CLASS', 'container' );
+
+if ( !defined( 'SHOESTRAP_NAVBAR_CONTAINER_CLASS' ) )
+	define( 'SHOESTRAP_NAVBAR_CONTAINER_CLASS', 'container' );
+
+if ( !defined( 'SHOESTRAP_NAVBAR_CLASS' ) )
+	define( 'SHOESTRAP_NAVBAR_CLASS', ' navbar-static-top' );
 
 // require_once locate_template('/lib/dependencies/dependencies.php');           // Utility functions
 
