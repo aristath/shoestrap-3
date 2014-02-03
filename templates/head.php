@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php wp_title('|', true, 'right'); ?></title>
-<?php if ( shoestrap_getVariable( 'site_style' ) != 'static' ): ?>
+<?php if ( defined( 'SHOESTRAP_SITE_STYLE' ) && SHOESTRAP_SITE_STYLE != 'static' ): ?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <meta name="mobile-web-app-capable" content="yes">

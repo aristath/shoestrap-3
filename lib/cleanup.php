@@ -99,34 +99,6 @@ function roots_clean_style_tag($input) {
 add_filter('style_loader_tag', 'roots_clean_style_tag');
 
 /**
- * Add and remove body_class() classes
- */
-function roots_body_class($classes) {
-  // Add 'top-navbar' or 'bottom-navabr' class if using Bootstrap's Navbar
-  // Used to add styling to account for the WordPress admin bar
-  if ( current_theme_supports( 'bootstrap-top-navbar' ) && shoestrap_getVariable( 'navbar_fixed' ) == 1 && shoestrap_getVariable( 'navbar_fixed_position' ) != 1 )
-    $classes[] = 'top-navbar';
-  elseif ( current_theme_supports( 'bootstrap-top-navbar' ) && shoestrap_getVariable( 'navbar_fixed' ) == 1 && shoestrap_getVariable( 'navbar_fixed_position' ) == 1 )
-    $classes[] = 'bottom-navbar';
-
-  // Add post/page slug
-  if (is_single() || is_page() && !is_front_page()) {
-    $classes[] = basename(get_permalink());
-  }
-
-  // Remove unnecessary classes
-  $home_id_class = 'page-id-' . get_option('page_on_front');
-  $remove_classes = array(
-    'page-template-default',
-    $home_id_class
-  );
-  $classes = array_diff($classes, $remove_classes);
-
-  return $classes;
-}
-add_filter('body_class', 'roots_body_class');
-
-/**
  * Wrap embedded media as suggested by Readability
  *
  * @link https://gist.github.com/965956
