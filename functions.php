@@ -16,7 +16,7 @@ if ( !defined( 'SHOESTRAP_NAVBAR_CONTAINER_CLASS' ) )
 	define( 'SHOESTRAP_NAVBAR_CONTAINER_CLASS', 'container' );
 
 if ( !defined( 'SHOESTRAP_NAVBAR_CLASS' ) )
-	define( 'SHOESTRAP_NAVBAR_CLASS', ' navbar-static-top' );
+	define( 'SHOESTRAP_NAVBAR_CLASS', 'navbar navbar-default navbar-static-top' );
 
 // require_once locate_template('/lib/dependencies/dependencies.php');           // Utility functions
 
