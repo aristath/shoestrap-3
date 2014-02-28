@@ -81,6 +81,7 @@ function shoestrap_footer_html() {
 
 	<div id="footer-copyright">
 		<article class="<?php echo shoestrap_container_class(); ?>">
+		<div class="row">
 			<div id="copyright-bar" class="col-lg-<?php echo $width; ?>"><?php echo $ftext; ?></div>
 			<?php if ( $social && count( $networks ) > 0 ) : ?>
 				<div id="footer_social_bar" class="col-lg-<?php echo $social_width; ?>">
@@ -93,6 +94,7 @@ function shoestrap_footer_html() {
 				</div>
 			<?php endif; ?>
 			<div class="clearfix"></div>
+			</div>
 		</article>
 	</div>
 	<?php
