@@ -24,8 +24,12 @@ if ( ! defined( 'SHOESTRAP_ASSETS_URL' ) ) {
 
 // The option that is used by Shoestrap in the database for all settings.
 if ( ! defined( 'SHOESTRAP_OPT_NAME' ) ) {
-	$theme = wp_get_theme(); // For use with some settings. Not necessary.
-	define( 'SHOESTRAP_OPT_NAME', $theme->get( 'Name' ) . '-shoestrap' );
+	// Get the parent theme name if needed
+	if( isset( $theme->parent_theme ) ){
+		define( 'SHOESTRAP_OPT_NAME', $theme->parent_theme . '-shoestrap' );
+	}else{
+		define( 'SHOESTRAP_OPT_NAME', $theme->name . '-shoestrap' );
+	}
 }
 
 global $ss_settings;
