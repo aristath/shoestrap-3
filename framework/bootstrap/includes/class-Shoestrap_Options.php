@@ -1859,8 +1859,8 @@ if ( ! class_exists( 'Shoestrap_Options' ) ) {
 				'display_version'   => $theme->get( 'Version' ),
 				'menu_type'         => 'menu',
 				'allow_sub_menu'    => true,
-				'menu_title'        => __( 'Shoestrap', 'shoestrap'),
-				'page_title'        => __('Shoestrap Options', 'shoestrap'),
+				'menu_title'        => $theme->get( 'Name' ),
+				'page_title'        => $theme->get( 'Name' ) .  __(' Options', 'shoestrap'),
 				'global_variable'   => 'redux',
 
 				'google_api_key'    => 'AIzaSyCDiOc36EIOmwdwspLG3LYwCg9avqC5YLs',
