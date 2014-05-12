@@ -1852,6 +1852,13 @@ if ( ! class_exists( 'Shoestrap_Options' ) ) {
 
 			$theme = wp_get_theme(); // For use with some settings. Not necessary.
 
+			// Get the parent theme name if needed
+			if( !empty( $theme->parent_theme ) ){
+				$themeName = $theme->parent_theme;
+			}else{
+				$themeName = $theme->name;
+			}
+				// 
 			$this->args = array(
 				// TYPICAL -> Change these values as you need/desire
 				'opt_name'          => SHOESTRAP_OPT_NAME,
@@ -1859,9 +1866,8 @@ if ( ! class_exists( 'Shoestrap_Options' ) ) {
 				'display_version'   => $theme->get( 'Version' ),
 				'menu_type'         => 'menu',
 				'allow_sub_menu'    => true,
-				'menu_title'        => $theme->get( 'Name' ),
-				'page_title'        => $theme->get( 'Name' ) .  __(' Options', 'shoestrap'),
-				'global_variable'   => 'redux',
+				'menu_title'        => $themeName,
+				'page_title'        => $themeName .  __(' Options', 'shoestrap'),
 
 				'google_api_key'    => 'AIzaSyCDiOc36EIOmwdwspLG3LYwCg9avqC5YLs',
 
