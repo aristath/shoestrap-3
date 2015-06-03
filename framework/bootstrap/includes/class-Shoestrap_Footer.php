@@ -166,7 +166,9 @@ if( ! class_exists( 'Shoestrap_Footer' ) ) {
 
 			echo '<div id="footer-copyright">';
 				echo $ss_framework->open_row( 'div' );
-					echo $ss_framework->open_col( 'div', array( 'large' => $width ), 'copyright-bar' ) . $ftext . '</div>';
+					echo $ss_framework->open_col( 'div', array( 'large' => $width ), 'copyright-bar' );
+
+						echo $ftext;
 
 						if ( $social && ! is_null( $networks ) && count( $networks ) > 0 ) {
 							echo $ss_framework->open_col( 'div', array( 'large' => $social_width ), 'footer_social_bar' );
