@@ -33,7 +33,7 @@ function shoestrap_theme_activate_license() {
 	);
 
 	// Get the server response
-	$response = wp_remote_get( add_query_arg( $api_params, 'http://shoestrap.org' ), array( 'timeout' => 15, 'sslverify' => false ) );
+	$response = wp_remote_get( add_query_arg( $api_params, 'https://press.codes' ), array( 'timeout' => 15, 'sslverify' => false ) );
 
 	// Make sure no error has occured
 	if ( is_wp_error( $response ) ) {
