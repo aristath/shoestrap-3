@@ -17,7 +17,7 @@ class Shoestrap_Vcard_Widget extends WP_Widget {
 	function __construct() {
 		$widget_ops = array( 'classname' => 'widget_shoestrap_vcard', 'description' => __( 'Use this widget to add a vCard', 'shoestrap' ) );
 
-		$this->WP_Widget( 'widget_shoestrap_vcard', __( 'Shoestrap: vCard', 'shoestrap' ), $widget_ops );
+		parent::__construct( 'widget_shoestrap_vcard', __( 'Shoestrap: vCard', 'shoestrap' ), $widget_ops );
 		$this->alt_option_name = 'widget_shoestrap_vcard';
 
 		add_action( 'save_post', array( &$this, 'flush_widget_cache' ) );
